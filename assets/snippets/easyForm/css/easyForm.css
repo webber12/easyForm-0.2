@@ -1,0 +1,17 @@
+.validation_message{}
+
+.easyForm .f_row{padding-bottom:5px;}
+.easyForm input.f_txt{width:236px;border:solid 1px #999999;padding:0 7px;}
+.easyForm input.f_ver{width:134px;border:solid 1px #999999;padding:0 7px;}
+.easyForm textarea.f_txtarea{width:236px;height:80px;border:solid 1px #999999;padding:7px;}
+.easyForm label{margin-right:20px;}
+.easyForm select{width:250px;border:solid 1px #999999;padding:0 7px;}
+.easyForm .f_sendbutton input[type='submit']{width:150px;}
+.easyForm checkbox{border:solid 1px white;}
+
+.easyForm_errors{position:fixed;right:0;top:0;width:250px;z-index:10000;background:#cc0000;color:white;padding:10px;border-radius:5px;}
+
+.easyForm input.invalid,.easyForm textarea.invalid,.easyForm select.invalid{border-color:#cc0000;}
+.easyForm input.required,.easyForm textarea.required,.easyForm select.invalid,.easyForm radio.invalid,.easyForm checkbox.invalid{border-color:#cc0000;}
+
+div.required{border:solid 1px #cc0000;}
