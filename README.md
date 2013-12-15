@@ -13,12 +13,10 @@ version 0.2
 
 ### Установка:
 ---------
-* 1. Скачиваем архив со сниппетом
+* 1. Скачиваем архив
 * 2. Распаковываем содержимое и помещаем в корень сайта
-* 3. создаем модуль с названием easyForm и кодом require_once MODX_BASE_PATH."assets/modules/easyForm/module.easyForm.php";
-* 4. создаем сниппет с названием easyForm и кодом 
-return require_once MODX_BASE_PATH."assets/snippets/easyForm/snippet.easyForm.php";
-
+* 3. создаем модуль с названием easyForm и кодом из соответствующего файла папки install
+* 4. создаем сниппет с названием easyForm и кодом из соответствующего файла папки install
 
 
 ### Использование на сайте - тут вообще все просто
