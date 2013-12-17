@@ -103,7 +103,7 @@ $fieldRowTpl='
 $fieldEditTpl='
 	<form action="" method="post" class="actionButtons">
 		<input type="hidden" name="action" value="updateField">
-		Название: <br><input type="text" value="[+title+]" name="title"><br> 
+		Название: <br><input type="text" value=\'[+title+]\' name="title"><br> 
 		Тип: <br>
 		<select name="type">[+options+]</select>
 		<br>
