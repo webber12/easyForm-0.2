@@ -22,9 +22,10 @@ $formListTpl='
 	<br><br>
 	<!--форма для создания новой формы-->
 	<form action="" method="post" class="actionButtons"> 
-		Название: <br><input type="text" value="" name="newformname"><br>
-		Описание: <br><input type="text" value="" name="newformtitle"><br>
-		Email: <br><input type="text" value="" name="newformemail"><br><br>
+		<input type="hidden" name="action" value="newForm">
+		Название: <br><input type="text" value="" name="name"><br>
+		Описание: <br><input type="text" value="" name="title"><br>
+		Email: <br><input type="text" value="" name="email"><br><br>
 		<input type="submit" value="Добавить форму">
 	</form>		
 ';
@@ -43,10 +44,11 @@ $formRowTpl='
 ';
 
 $formEditTpl='
-	<form action="" method="post" class="actionButtons"> 
-		Название: <br><input type="text" value=\'[+name+]\' name="curformname" size="50"><br> 
-		Описание: <br><input type="text" value=\'[+title+]\' name="curformtitle" size="50"><br>
-		Email: <br><input type="text" value=\'[+email+]\' name="curformemail" size="50"><br><br>
+	<form action="" method="post" class="actionButtons">
+		<input type="hidden" name="action" value="updateForm">
+		Название: <br><input type="text" value=\'[+name+]\' name="name" size="50"><br> 
+		Описание: <br><input type="text" value=\'[+title+]\' name="title" size="50"><br>
+		Email: <br><input type="text" value=\'[+email+]\' name="email" size="50"><br><br>
 		<input type="submit" value="Сохранить">
 	</form><br><br>
 	<a href="[+moduleurl+]">К списку форм</a>
@@ -74,14 +76,15 @@ $fieldListTpl='
 	</form>
 	<br><br>
 	<h2>Добавление нового поля</h2>
-	<form action="" method="post" class="actionButtons"> 
-		Название <br><input type="text" value="" name="newpoletitle"><br>
+	<form action="" method="post" class="actionButtons">
+		<input type="hidden" name="action" value="newField">
+		Название <br><input type="text" value="" name="title"><br>
 		Тип поля <br>	
-		<select name="newpoletype">[+typeOptions+]</select><br>
+		<select name="type">[+typeOptions+]</select><br>
 		Значение (для типа "список","переключатель","флажок") в формате "значение==подпись" либо просто "подпись", если значение и подпись совпадают (каждый вариант - с новой строки):<br>
-		<textarea name="newpolevalue"></textarea>
+		<textarea name="value"></textarea>
 		<br>
-		Обязательно <input type="checkbox" name="newpolerequire" value="1"><br><br>
+		Обязательно <input type="checkbox" name="require" value="1"><br><br>
 		<input type="submit" value="Добавить поле">
 	</form>
 	<br><br>
@@ -98,15 +101,16 @@ $fieldRowTpl='
 ';
 
 $fieldEditTpl='
-	<form action="" method="post" class="actionButtons"> 
-		Название: <br><input type="text" value="[+title+]" name="curpoletitle"><br> 
+	<form action="" method="post" class="actionButtons">
+		<input type="hidden" name="action" value="updateField">
+		Название: <br><input type="text" value="[+title+]" name="title"><br> 
 		Тип: <br>
-		<select name="curpoletype">[+options+]</select>
+		<select name="type">[+options+]</select>
 		<br>
 		Значение (для типа "список","переключатель","флажок") в формате "значение==подпись" либо просто "подпись", если значение и подпись совпадают (каждый вариант - с новой строки): 
 		<br>
-		<textarea name="curpolevalue">[+value+]</textarea><br>
-		Обязательно: <input type="checkbox" value="1" name="curpolerequire" [+checked+]><br><br>
+		<textarea name="value">[+value+]</textarea><br>
+		Обязательно: <input type="checkbox" value="1" name="require" [+checked+]><br><br>
 		<input type="submit" value="Сохранить изменения">
 	</form>
 	<br><br>

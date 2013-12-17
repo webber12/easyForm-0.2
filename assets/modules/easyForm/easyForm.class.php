@@ -96,7 +96,10 @@ public function updateForm($fields,$table,$where){
 
 public function delForm($id){
 	$query=$this->modx->db->query("DELETE FROM ".$this->forms_table." WHERE id=".$id);
-	if($query){$this->info='<p class="info">Форма успешно удалена</p>';}
+	if($query){
+		$query2=$this->modx->db->query("DELETE FROM ".$this->fields_table." WHERE parent=".$id);
+		$this->info='<p class="info">Форма успешно удалена</p>';
+	}
 	else{$this->info='<p class="info error">Не удалось удалить форму</p>';}
 }
 
@@ -140,20 +143,20 @@ public function makeActions(){
 		$this->delField((int)$_POST['delpole1']);
 	}
 
-	if(isset($_POST['newformname'])&&isset($_POST['newformtitle'])){//добавляем новую форму
-		$newformname=$this->escape($_POST['newformname']);
-		$newformtitle=$this->escape($_POST['newformtitle']);
-		$newformemail=$this->escape($_POST['newformemail']);
-		$newformsort=1;
+	if(isset($_POST['action'])&&$_POST['action']=='newForm'){//добавляем новую форму
+		$name=$this->escape($_POST['name']);
+		$title=$this->escape($_POST['title']);
+		$email=$this->escape($_POST['email']);
+		$sort=1;
 		$maxformsort=$this->modx->db->getValue($this->modx->db->query("SELECT MAX(sort) FROM ".$this->forms_table." LIMIT 0,1"));
 		if($maxformsort){
-			$newformsort=(int)$maxformsort+1;
+			$sort=(int)$maxformsort+1;
 		}
 		$flds=array(
-			'name'=>$newformname,
-			'title'=>$newformtitle,
-			'sort'=>$newformsort,
-			'email'=>$newformemail
+			'name'=>$name,
+			'title'=>$title,
+			'sort'=>$sort,
+			'email'=>$email
 		);
 		$this->addForm($flds,$this->forms_table);
 	}
@@ -161,14 +164,14 @@ public function makeActions(){
 	if(isset($_GET['fid'])&&isset($_GET['action'])&&$_GET['action']=='edit'){//редактирование формы
 		$this->info_type=2;
 		$this->zagol='Редактирование формы';
-		if(isset($_POST['curformname'])&&isset($_POST['curformtitle'])){
-			$curformname=$this->escape($_POST['curformname']);
-			$curformtitle=$this->escape($_POST['curformtitle']);
-			$curformemail=$this->escape($_POST['curformemail']);
+		if(isset($_POST['action'])&&$_POST['action']=='updateForm'){
+			$name=$this->escape($_POST['name']);
+			$title=$this->escape($_POST['title']);
+			$email=$this->escape($_POST['email']);
 			$flds=array(
-				'name'=>$curformname,
-				'title'=>$curformtitle,
-				'email'=>$curformemail
+				'name'=>$name,
+				'title'=>$title,
+				'email'=>$email
 			);
 			
 			$this->updateForm($flds,$this->forms_table,"id=".(int)$_GET['fid']);
@@ -183,28 +186,29 @@ public function makeActions(){
 	if(isset($_GET['fid'])&&isset($_GET['action'])&&$_GET['action']=='pole'&&!isset($_GET['pid'])){
 		$this->info_type=3;
 		$this->zagol='Список полей формы';
-		$parent=(int)$_GET['fid'];
-		$require=isset($_POST['newpolerequire'])?1:0;
+		
 		if(isset($_POST['sortpole'])){//сортируем поля
 		
 			$this->sortFields($_POST['sortpole']);
 		}
 		
-		if(isset($_POST['newpoletitle'])&&isset($_POST['newpoletype'])&&isset($_POST['newpolevalue'])){//добавляем новое поле
-			$newpoletitle=$this->escape($_POST['newpoletitle']);
-			$newpoletype=$this->escape($_POST['newpoletype']);
-			$newpolevalue=$this->escape($_POST['newpolevalue']);
-			$newpolesort=1;
+		$parent=(int)$_GET['fid'];
+		if(isset($_POST['action'])&&$_POST['action']=='newField'){//добавляем новое поле
+			$title=$this->escape($_POST['title']);
+			$type=$this->escape($_POST['type']);
+			$value=$this->escape($_POST['value']);
+			$require=isset($_POST['require'])?1:0;
+			$sort=1;
 			$maxpolesort=$this->modx->db->getValue($this->modx->db->query("SELECT MAX(sort) FROM ".$this->fields_table." WHERE parent=".$parent." LIMIT 0,1"));
 			if($maxpolesort){
-				$newpolesort=(int)$maxpolesort+1;
+				$sort=(int)$maxpolesort+1;
 			}
 			$flds=array(
 				'parent'=>$parent,
-				'title'=>$newpoletitle,
-				'type'=>$newpoletype,
-				'value'=>$newpolevalue,
-				'sort'=>$newpolesort,
+				'title'=>$title,
+				'type'=>$type,
+				'value'=>$value,
+				'sort'=>$sort,
 				'required'=>$require
 			);
 			$this->addField($flds,$this->fields_table);
@@ -217,15 +221,15 @@ public function makeActions(){
 		$this->info_type=4;
 		$this->zagol='Редактирование поля формы';
 		$parent=(int)$_GET['fid'];
-		$require=isset($_POST['curpolerequire'])?1:0;
-		if(isset($_POST['curpoletitle'])&&isset($_POST['curpoletype'])&&isset($_POST['curpolevalue'])){//редактируем поле
-			$curpoletitle=$this->escape($_POST['curpoletitle']);
-			$curpoletype=$this->escape($_POST['curpoletype']);
-			$curpolevalue=$this->escape($_POST['curpolevalue']);
+		if(isset($_POST['action'])&&$_POST['action']=='updateField'){//редактируем поле
+			$title=$this->escape($_POST['title']);
+			$type=$this->escape($_POST['type']);
+			$value=$this->escape($_POST['value']);
+			$require=isset($_POST['require'])?1:0;
 			$flds=array(
-				'title'=>$curpoletitle,
-				'type'=>$curpoletype,
-				'value'=>$curpolevalue,
+				'title'=>$title,
+				'type'=>$type,
+				'value'=>$value,
 				'required'=>$require
 			);
 			
