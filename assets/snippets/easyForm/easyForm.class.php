@@ -207,7 +207,7 @@ public function prepareRun(){
 	$this->params['tpl']=$this->makeTpl();
 	$this->params['report']=$this->makeReportTpl();
 	$formInfo=$this->getFormInfo();
-	$this->params['to']=$formInfo['to'];
+	$this->params['to']=$formInfo['email'];
 	$this->params['subject']='Обратная связь: '.$formInfo['name'];
 	return $this->params;
 }
