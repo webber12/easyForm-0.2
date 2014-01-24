@@ -12,20 +12,22 @@ $outerTpl='
 			
 			<div class="f_sendbutton"><input type="submit" value="Отправить"</div>
 		</form>
-	</div>
+	</div></div>
 ';			
 $rowTpl='
 	<div class="f_row f_row[+num+]">
 		<div class="f_title">[+title+] [+req_text+]</div>
-		<div class="field">
-				[+field+]
-			</div>
-		</div>
+		<div class="field">[+field+]</div>
+	</div>
 ';
 $capchaTpl='
 	<div class="f_capcha">
 		<div class="f_title">Введите код с картинки: </div>
-		<div class="f_field"><input type="text" class="f_ver" name="vericode" /><div class="f_image_capcha"><img class="feed" id="capcha[+id+]" src="[+verimageurl+]" alt="Введите код" /></div><div class="f_renew_capcha"><a href="javascript:;" onclick="document.getElementById(\'capcha[+id+]\').src=\'[+capcha_dir+]/includes/veriword.php?rand=\'+Math.random();">обновить картинку</a></div></div>
+		<div class="f_field">
+			<input type="text" class="f_ver" name="vericode" />
+			<div class="f_image_capcha"><img class="feed" id="capcha[+id+]" src="[+verimageurl+]" alt="Введите код" /></div>
+			<div class="f_renew_capcha"><a href="javascript:;" onclick="document.getElementById(\'capcha[+id+]\').src=\'[+capcha_dir+]/includes/veriword.php?rand=\'+Math.random();">обновить картинку</a></div>
+		</div>
 	</div>
 ';
 ?>

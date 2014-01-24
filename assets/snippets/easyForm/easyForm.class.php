@@ -60,10 +60,10 @@ public function makeTpl($config='default'){
 	{
 		//подключаем файл конфигурации с шаблонами вывода формы
 		if(is_file(dirname(__FILE__).'/config/config.'.$config.'.php')){
-			include_once(dirname(__FILE__).'/config/config.'.$config.'.php');
+			include(dirname(__FILE__).'/config/config.'.$config.'.php');
 		}
 		else{
-			include_once(dirname(__FILE__).'/config/config.default.php');
+			include(dirname(__FILE__).'/config/config.default.php');
 		}
 		
 		$forma=$this->modx->db->query("SELECT * FROM ".$this->fields_table." WHERE parent=".$this->id." ORDER BY sort ASC");
