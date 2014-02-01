@@ -10,7 +10,7 @@ $outerTpl='
 
 			[+fields+]
 			
-			<div class="f_sendbutton"><input type="submit" value="Отправить"</div>
+			<div class="f_sendbutton"><input type="submit" value="Отправить"></div>
 		</form>
 	</div></div>
 ';			
