@@ -11,9 +11,10 @@ public $fields_table='';
 public $base_url;
 public $lang=array();
 
-public function __construct($modx,$params,$eid){
+public function __construct($modx, $params, $eid){
 	$this->modx=$modx;
 	$this->params=$params;
+	$this->cfg = (isset($params['cfg']) && $params['cfg'] != '') ? $params['cfg'] : 'default';
 	$this->id=$eid;
 	$this->forms_table=$this->modx->getFullTableName('forms');
 	$this->fields_table=$this->modx->getFullTableName('form_fields');
@@ -50,7 +51,7 @@ public function checkCapcha(){
 }
 
 
-public function makeTpl($config='default'){
+public function makeTpl($config = $this->cfg){
 
 	$outer='';
 	$fields='';
