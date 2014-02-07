@@ -51,7 +51,7 @@ public function checkCapcha(){
 }
 
 
-public function makeTpl($config = $this->cfg){
+public function makeTpl(){
 
 	$outer='';
 	$fields='';
@@ -60,8 +60,8 @@ public function makeTpl($config = $this->cfg){
 	if($this->modx->db->getRecordCount($this->modx->db->query("SELECT * FROM ".$this->forms_table." WHERE id=".$this->id." LIMIT 0,1"))==1)
 	{
 		//подключаем файл конфигурации с шаблонами вывода формы
-		if(is_file(dirname(__FILE__).'/config/config.'.$config.'.php')){
-			include(dirname(__FILE__).'/config/config.'.$config.'.php');
+		if(is_file(dirname(__FILE__).'/config/config.'.$this->cfg.'.php')){
+			include(dirname(__FILE__).'/config/config.'.$this->cfg.'.php');
 		}
 		else{
 			include(dirname(__FILE__).'/config/config.default.php');
