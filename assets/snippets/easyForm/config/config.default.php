@@ -6,7 +6,7 @@ $outerTpl='
 	<div class="f_description">[form_description]</div>
 	<div class="f_form f_form[+id+]" id="f_form[+id+]">
 		<div class="validation_message">[+validationmessage+]</div>
-		<form id="f[+id+]" class="easyForm" action="[~[*id*]~]" method="post">		
+		<form id="f[+id+]" class="easyForm" action="[~[*id*]~]" method="post" enctype="multipart/form-data">		
 
 			[+fields+]
 			
