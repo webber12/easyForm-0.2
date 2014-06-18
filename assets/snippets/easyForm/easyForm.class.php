@@ -130,7 +130,7 @@ public function makeTpl(){
 					break;
 					
 				  case 8:
-					$field="<input type='file' name='param".$k."' class='f_file' eform='".$v['title'].":".$type.":".$req."'>";
+					$field="<input type='file' name='param".$k."' class='f_file' eform='".$v['title'].":file:".$req."'>";
 					break;
 					
 				  case 9:
