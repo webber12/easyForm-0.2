@@ -73,7 +73,7 @@ public function makeTpl(){
 		if($this->modx->db->getRecordCount($forma)>0){
 			$form=array();
 			while($row=$this->modx->db->getRow($forma)){
-				$form[$row['id']]['title']=$this->getLang($row['title']);
+				$form[$row['id']]['title']=$this->getLang(rtrim($row['title'], ': '));
 				$form[$row['id']]['type']=$row['type'];
 				$form[$row['id']]['value']=$row['value'];
 				$form[$row['id']]['required']=$row['required'];
