@@ -12,7 +12,7 @@ $outerTpl='
 			
 			<div class="f_sendbutton"><input type="submit" value="Отправить"></div>
 		</form>
-	</div></div>
+	</div>
 ';			
 $rowTpl='
 	<div class="f_row f_row[+num+]">
