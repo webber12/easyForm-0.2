@@ -82,16 +82,20 @@ public function makeTpl(){
 			$fields='';
 			
 			foreach($form as $k=>$v){
-				$req=$v['required']==1?1:0;
-				$type=$v['type']==3?'email':'string';
-				
+				$req = $v['required'] == 1 ? 1 : 0;
+				$type = $v['type'] == 3 ? 'email' : 'string';
+				if (stristr($v['value'], '$modx->') !== FALSE) {
+					$v['value'] = eval($v['value']);
+					$v['value'] = str_replace("||", "\n", $v['value']);
+				}
+				$opts = explode("\n", $v['value']);
 				switch($v['type']){
 				  case 2:
 					$field="<textarea name='param".$k."' class='f_txtarea' eform='".$v['title'].":".$type.":".$req."'></textarea>";
 					break;
 				
 				  case 5:
-					$opts=explode("\n",$v['value']);
+					//$opts=explode("\n",$v['value']);
 					$opt='';
 					foreach($opts as $k1=>$v1){
 						$v1=trim($v1);
@@ -104,7 +108,7 @@ public function makeTpl(){
 					break;
 				
 				  case 6:
-					$opts=explode("\n",$v['value']);
+					//$opts=explode("\n",$v['value']);
 					$opt='';
 					foreach($opts as $k1=>$v1){
 						$v1=trim($v1);
@@ -117,7 +121,7 @@ public function makeTpl(){
 					break;
 					
 				  case 7:
-					$opts=explode("\n",$v['value']);
+					//$opts=explode("\n",$v['value']);
 					$opt='';
 					foreach($opts as $k1=>$v1){
 						$v1=trim($v1);
@@ -134,7 +138,7 @@ public function makeTpl(){
 					break;
 					
 				  case 9:
-					$opts=explode("\n",$v['value']);
+					//$opts=explode("\n",$v['value']);
 					$opt='';
 					foreach($opts as $k1=>$v1){
 						$v1=trim($v1);
