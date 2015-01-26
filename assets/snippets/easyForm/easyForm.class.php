@@ -85,7 +85,7 @@ public function makeTpl(){
 				$req = $v['required'] == 1 ? 1 : 0;
 				$type = $v['type'] == 3 ? 'email' : 'string';
 				if (stristr($v['value'], '$modx->') !== FALSE) {
-					$v['value'] = eval($v['value']);
+					$v['value'] = eval(str_replace('modx->', 'this->modx->', $v['value']));
 					$v['value'] = str_replace("||", "\n", $v['value']);
 				}
 				$opts = explode("\n", $v['value']);
